@@ -50,4 +50,11 @@ public class ProductController {
         productService.saveProduct(storedProduct);
         return new ResponseEntity("Product updated successfully", HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Delete a product")
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity delete(@PathVariable Integer id){
+        productService.deleteProduct(id);
+        return new ResponseEntity("Product deleted successfully", HttpStatus.OK);
+    }
 }
