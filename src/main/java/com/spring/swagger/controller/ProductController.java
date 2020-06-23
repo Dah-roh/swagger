@@ -4,11 +4,10 @@ import com.spring.swagger.domain.Product;
 import com.spring.swagger.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
@@ -30,5 +29,13 @@ public class ProductController {
     public Product showProduct(@PathVariable Integer id, Model model){
         Product product = productService.getProductById(id);
         return product;
+    }
+
+
+    @ApiOperation(value = "Add a product")
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity saveProduct(@RequestBody Product product){
+        productService.saveProduct(product);
+        return new ResponseEntity("Product saved successfully", HttpStatus.OK);
     }
 }
