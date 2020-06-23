@@ -38,4 +38,16 @@ public class ProductController {
         productService.saveProduct(product);
         return new ResponseEntity("Product saved successfully", HttpStatus.OK);
     }
+
+
+    @ApiOperation(value = "Update a product")
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity updateProduct(@PathVariable Integer id, @RequestBody Product product){
+        Product storedProduct = productService.getProductById(id);
+        storedProduct.setDescription(product.getDescription());
+        storedProduct.setImageUrl(product.getImageUrl());
+        storedProduct.setPrice(product.getPrice());
+        productService.saveProduct(storedProduct);
+        return new ResponseEntity("Product updated successfully", HttpStatus.OK);
+    }
 }
