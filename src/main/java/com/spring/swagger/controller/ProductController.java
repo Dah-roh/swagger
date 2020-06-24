@@ -1,7 +1,6 @@
 package com.spring.swagger.controller;
 
 import com.spring.swagger.domain.Product;
-import com.spring.swagger.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
